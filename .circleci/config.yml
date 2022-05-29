@@ -20,7 +20,7 @@ jobs:
       - python/install-packages:
           pkg-manager: pip
       - run:
-          python3 app.py &&
+          python3 app.py &
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
