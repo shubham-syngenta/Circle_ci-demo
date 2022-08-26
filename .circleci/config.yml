@@ -15,7 +15,7 @@ jobs:
     working_directory: ~/Circle_ci-demo
     docker:
       - image: cimg/python:3.10.2
-     resource_class: medium+
+     resource_class: small
     steps:
       - checkout
       - python/install-packages:
