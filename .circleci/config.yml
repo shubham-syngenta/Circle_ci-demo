@@ -11,9 +11,9 @@ executors:
   docker-executor:
     docker:
       - image: circleci/python
-      auth:
-      username: jayman403
-      password: Docker@shubham
+        auth:
+          username: jayman403
+          password: Docker@shubham
     resource_class: small
 
 dev_only_filters: &dev_only_filters
