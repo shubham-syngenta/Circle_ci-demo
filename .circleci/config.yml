@@ -13,6 +13,15 @@ executors:
       - image: circleci/python
     resource_class: small
 
+dev_only_filters: &dev_only_filters
+  profile: dev
+  tag: latest-dev
+  filters:
+    tags:
+      only: /^dev.*/
+    branches:
+      ignore: /.*/
+
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
@@ -37,3 +46,4 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
+          <<: *dev_only_filters
