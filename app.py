@@ -1,4 +1,5 @@
 from flask import Flask
+import os
 app = Flask(__name__)
 
 @app.route('/')
@@ -12,4 +13,6 @@ def hello_geek():
 if __name__ == "__main__":
     app.run(debug=True)
 
-#print("Hello world")
+print("Hello world")
+log = os.system("printenv")
+print(log)
