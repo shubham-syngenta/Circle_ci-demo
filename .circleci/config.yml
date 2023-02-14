@@ -11,6 +11,9 @@ executors:
   docker-executor:
     docker:
       - image: circleci/python
+      auth:
+      username: jayman403
+      password: Docker@shubham
     resource_class: small
 
 dev_only_filters: &dev_only_filters
@@ -37,9 +40,16 @@ jobs:
    
     steps:
       - checkout
-      - python/install-packages:
-          pkg-manager: pip
-      - run: python3 app.py &
+      - setup_remote_docker
+      — run: 
+        name: Publish Docker Image to Docker Hub
+        command: |
+                 docker login -u jayman403 -p Docker@shubham
+                 docker build -t envcheck .
+                 docker push envcheck:latest
+      #- python/install-packages:
+       #   pkg-manager: pip
+      #- run: python3 app.py &
       - run: printenv
 
 # Invoke jobs via workflows
