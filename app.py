@@ -11,8 +11,9 @@ def hello_geek():
 
 
 if __name__ == "__main__":
+    print("Hello world")
+    log = os.system("printenv")
+    print(log)
     app.run(debug=True)
 
-print("Hello world")
-log = os.system("printenv")
-print(log)
+
