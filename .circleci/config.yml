@@ -46,4 +46,4 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
-          <<: *dev_only_filters
+         <<: *dev_only_filters
