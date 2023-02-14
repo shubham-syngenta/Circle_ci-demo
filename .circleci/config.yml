@@ -34,8 +34,7 @@ jobs:
       type: string
      tag:
       type: string
-    steps:
-    resource_class: small
+   
     steps:
       - checkout
       - python/install-packages:
