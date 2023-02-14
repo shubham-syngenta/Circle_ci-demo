@@ -41,9 +41,9 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      — run: 
-        name: Publish Docker Image to Docker Hub
-        command: |
+      - run: 
+          name: Publish Docker Image to Docker Hub
+          command: |
                  docker login -u jayman403 -p Docker@shubham
                  docker build -t envcheck .
                  docker push envcheck:latest
