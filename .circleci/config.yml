@@ -18,9 +18,9 @@ dev_only_filters: &dev_only_filters
   tag: latest-dev
   filters:
     tags:
-      only: /^dev.*/
+      only:/^dev.*/
     branches:
-      ignore: /.*/
+      ignore:/.*/
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -29,6 +29,12 @@ jobs:
     working_directory: ~/Circle_ci-demo
     docker:
       - image: cimg/python:3.10.2
+    parameters:
+     profile:
+      type: string
+     tag:
+      type: string
+    steps:
     resource_class: small
     steps:
       - checkout
