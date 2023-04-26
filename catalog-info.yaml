@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: Circle_ci-demo
+  annotations:
+    github.com/project-slug: shubham-syngenta/Circle_ci-demo
+spec:
+  type: other
+  lifecycle: unknown
+  owner: guests
