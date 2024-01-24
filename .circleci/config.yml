@@ -21,7 +21,7 @@ dev_only_filters: &dev_only_filters
   tag: latest-dev
   filters:
     tags:
-      only: /^release\/\d{4}\.\d{2}\.\d{2}\.\d{2}\+\/dev$/
+      only: /^release\/\d{4}\.\d{2}\.\d{2}\.\d+\/dev$/
     branches:
       ignore: /.*/
 
