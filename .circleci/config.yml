@@ -2,17 +2,62 @@
 version: 2.1
 
 jobs:
-  scan-secrets:
+  plan-apply:
+    working_directory: /tmp/project
     docker:
-      - image: trufflesecurity/trufflehog:latest
+      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
     steps:
       - checkout
       - run:
-          name: "Scan for secrets"
-          # change --since-commit to match your default branch
-          command: trufflehog git file://. --since-commit main --branch "$CIRCLE_BRANCH" --fail --only-verified
-
+          name: terraform init & plan
+          command: |
+            touch shubham.txt
+            ls -a
+            # terraform init -input=false
+            # terraform plan -out tfapply -var-file terraform.tfvars
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  apply:
+    docker:
+      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: terraform
+          command: |
+            ls -a
+            # terraform apply -auto-approve tfapply
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
 workflows:
-  scan-secrets:
+  version: 2
+  plan_approve_apply:
     jobs:
-      - scan-secrets
+      - plan-apply
+      - hold-apply:
+          type: approval
+          requires:
+            - plan-apply
+      - apply:
+          requires:
+            - hold-apply
+# jobs:
+#   scan-secrets:
+#     docker:
+#       - image: trufflesecurity/trufflehog:latest
+#     steps:
+#       - checkout
+#       - run:
+#           name: "Scan for secrets"
+#           # change --since-commit to match your default branch
+#           command: trufflehog git file://. --since-commit main --branch "$CIRCLE_BRANCH" --fail --only-verified
+
+# # workflows:
+#   scan-secrets:
+#     jobs:
+#       - scan-secrets

@@ -4,6 +4,7 @@ metadata:
   name: Circle_ci-demo
   annotations:
     github.com/project-slug: shubham-syngenta/Circle_ci-demo
+    secret : 
 spec:
   type: other
   lifecycle: unknown
